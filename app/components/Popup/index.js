@@ -9,18 +9,15 @@ export default class Popup extends React.Component {
   };
 
   static defaultProps = {
-    fields: ['host', 'message', '@timestamp', 'stacktrace', 'logger', 'description']
-  };
-
-  stopProp = (ev) => {
-    ev.stopPropagation();
+    fields: ['host', 'message', '@timestamp', 'stacktrace', 'logger', 'description', 'severity']
   };
 
   render() {
     let logContent = this.props.log.fields;
     return (
-      <div className={style.popup} onClick={this.props.onClosePopup}>
-        <div className={style.popupContent} onClick={this.stopProp}>
+      <div className={style.popup}>
+        <div className={style.popupContent}>
+          <div className={ style.popupCross } onClick={this.props.onClosePopup}>&#x2573;</div>
           { this.props.fields.map((item) => <div key={ item } className={style.field} >
             <h2 className={style.fieldTitle}>{item}</h2>
             { logContent[item] }

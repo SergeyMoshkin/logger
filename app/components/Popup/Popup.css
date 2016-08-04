@@ -6,6 +6,14 @@
     transform: translate3d(0, 0, 0);
   }
 }
+@keyframes rotateCross {
+  from {
+    transform: rotate(-180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
 .popup {
   position: fixed;
   left: 0;
@@ -19,14 +27,12 @@
 }
 .popupContent {
   display: inline-block;
-  width: 800px;
   text-align: left;
   vertical-align: middle;
   white-space: pre-wrap;
   background: #fff;
   padding: 30px 20px;
   animation: popupAppear 0.5s cubic-bezier(0, 1.23, 0.22, 0.98);
-
 }
 .popup:after {
   content: "";
@@ -36,11 +42,19 @@
 }
 .fieldTitle {
   margin: 0;
-  font-size: 20px;
+  font-size: 14px;
 }
 .field {
   word-wrap: break-word;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   padding-bottom: 10px;
   border-bottom: 1px solid #e0e0e0;
+}
+.popupCross {
+    font-size: 25px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    animation: rotateCross 0.5s cubic-bezier(0.72, 2.54, 0.83, 1.45);
 }

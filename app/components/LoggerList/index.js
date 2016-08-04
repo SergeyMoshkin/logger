@@ -45,7 +45,7 @@ const LoggerList = (props) => {
 };
 
 LoggerList.defaultProps = {
-  colorArray: ['800000', '008000', '808000', '800080', '008080', 'ff0000', '00ff00', 'ffff00', '0000ff', 'ff00ff', '00ffff']
+  colorArray: ['#800000', '#008000', '#808000', '#800080', '#008080', '#ff0000', '#00ff00', '#ffff00', '#0000ff', '#ff00ff', '#00ffff']
 };
 
 LoggerList.propTypes = {
