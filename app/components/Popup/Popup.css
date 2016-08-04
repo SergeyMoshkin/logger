@@ -1,0 +1,46 @@
+@keyframes popupAppear {
+  from {
+    transform: translate3d(-3000px, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+.popup {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.popupContent {
+  display: inline-block;
+  width: 800px;
+  text-align: left;
+  vertical-align: middle;
+  white-space: pre-wrap;
+  background: #fff;
+  padding: 30px 20px;
+  animation: popupAppear 0.5s cubic-bezier(0, 1.23, 0.22, 0.98);
+
+}
+.popup:after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.fieldTitle {
+  margin: 0;
+  font-size: 20px;
+}
+.field {
+  word-wrap: break-word;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
