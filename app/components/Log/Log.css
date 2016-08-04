@@ -4,6 +4,7 @@
   text-overflow: ellipsis;
   width: 100%;
   overflow: hidden;
+  cursor: pointer;
 }
 .logItem {
   margin: 5px;

@@ -12,7 +12,8 @@ export default class HomePage extends React.Component {
 
   state = {
     logsList: [],
-    popupShown: false
+    popupShown: false,
+    currentLog: 0
   };
 
   pushLogsList = (data) => {
@@ -26,7 +27,7 @@ export default class HomePage extends React.Component {
     body.style.overflow = value;
   };
 
-  showPopup = () => {
+  showPopup() {
     this.setState((state) => {
       state.popupShown = true;
     }, () => {
@@ -34,6 +35,12 @@ export default class HomePage extends React.Component {
     }
     )
   };
+
+  setCurrentLog(number) {
+    this.setState({
+      currentLog: number
+    });
+  }
 
   closePopup = () => {
     this.setState((state) => {
@@ -46,13 +53,12 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <div onClick={this.showPopup} style={{color: '#fff'}}>click</div>
-        {this.state.popupShown && <Popup onClosePopup={this.closePopup} log={this.state.logsList[0]}/>}
+        {this.state.popupShown && <Popup onClosePopup={this.closePopup} log={this.state.logsList[this.state.currentLog]}/>}
         <Logger onLog={this.pushLogsList}>
           {
             this.state.logsList.length > 0
             &&
-            <LoggerList logs={this.state.logsList}>
+            <LoggerList logs={this.state.logsList} onLogClick={(data) => {this.setCurrentLog(data); this.showPopup()}}>
             </LoggerList>
           }
         </Logger>

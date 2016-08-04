@@ -37,7 +37,7 @@ const LoggerList = (props) => {
           props.logs.map((item, i) => {
             let fields = Object.assign(item.fields, {id: [item._id], index: [item._index], type: [item._type], score: [item._score]});
             let color = props.colorArray[crc32(fields.host[0]) % props.colorArray.length];
-            return <Log key={i} log={fields} color={color}/>
+            return <Log key={i} log={fields} color={color} onLogClick={() => {props.onLogClick(i)}}/>
           })
         }
       </div>
