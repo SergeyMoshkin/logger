@@ -9,7 +9,7 @@ const Log = (props) => {
           return (
             <span key={item + i} className={style.logItem}
                   style={(i === 0) ? {color: props.color} : {color: props.colors[props.log.severity[0]]}}>
-              {(i === 1 && props.log['stacktrace']) ? <span style={{fontSize: '14px'}}>&#x261D; </span> : null}
+              {(i === 1 && props.log['stacktrace']) ? <span style={{fontSize: '14px'}}>&#x26A1; </span> : null}
               {
                 (item === 'message') ?
                 (props.log[item][0] || 'no message') :
