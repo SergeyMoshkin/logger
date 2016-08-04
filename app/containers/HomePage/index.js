@@ -4,6 +4,7 @@ import messages from './messages';
 import LoggerList from '../../components/LoggerList';
 import Logger from '../../components/Logger';
 import Popup from '../../components/Popup';
+import Filter from '../../components/Filter';
 import style from './styles.css';
 
 const body = document.querySelector('body');
@@ -54,6 +55,7 @@ export default class HomePage extends React.Component {
     return (
       <div>
         {this.state.popupShown && <Popup onClosePopup={this.closePopup} log={this.state.logsList[this.state.currentLog]}/>}
+        <Filter />
         <Logger onLog={this.pushLogsList}>
           {
             this.state.logsList.length > 0
