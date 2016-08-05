@@ -1,0 +1,23 @@
+.main {
+    position: absolute;
+    left: 10%;
+    max-width: 400px;
+    white-space: pre;
+    background: #dadada;
+    z-index: 1000;
+    padding: 10px;
+}
+.main:before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 10%;
+    border: 10px solid;
+    border-color: transparent transparent #dadada transparent;
+}
+.field {
+    margin-bottom: 5px;
+}
+.fieldTitle {
+    margin: 0;
+}

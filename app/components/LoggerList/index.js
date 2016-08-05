@@ -37,7 +37,7 @@ const LoggerList = (props) => {
           props.logs.map((item, i) => {
             let fields = item.fields;
             let color = props.colorArray[crc32(fields.host[0]) % props.colorArray.length];
-            return <Log key={i} log={fields} color={color} onLogClick={() => {props.onLogClick(i)}} />
+            return <Log key={i} log={fields} color={color} onLogClick={() => {props.onLogClick(i)}} onShowTooltip={(ev, data) => props.onShowTooltip(ev, data, i)} onCloseTooltip={props.onCloseTooltip}/>
           })
         }
       </div>

@@ -3,7 +3,7 @@ import style from './Log.css';
 
 const Log = (props) => {
   return (
-    <div className={style.log} onClick={props.onLogClick}>
+    <div className={style.log} onClick={props.onLogClick} onMouseEnter={(ev) => props.onShowTooltip(ev, props.fields)} onMouseLeave={props.onCloseTooltip}>
       {
         props.fields.map((item, i) => {
           return (
@@ -26,7 +26,10 @@ const Log = (props) => {
 Log.propTypes = {
   log: PropTypes.object.isRequired,
   fields: PropTypes.array.isRequired,
-  color: PropTypes.string
+  color: PropTypes.string,
+  onShowTooltip: PropTypes.func.isRequired,
+  onLogClick: PropTypes.func.isRequired,
+  onCloseTooltip: PropTypes.func.isRequired,
 };
 
 Log.defaultProps = {
