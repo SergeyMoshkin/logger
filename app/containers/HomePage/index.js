@@ -55,7 +55,7 @@ export default class HomePage extends React.Component {
 
   showTooltip = (ev, data) => {
     this.setState({
-      tooltipShown: [true, ev.clientY + 15, ev.clientX + 10]
+      tooltipShown: [true, ev.clientY + window.scrollY + 15, ev.clientX + window.scrollX + 10]
     })
   };
 
