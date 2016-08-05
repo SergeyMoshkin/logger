@@ -54,7 +54,7 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <div>
-        {this.state.popupShown && <Popup onClosePopup={this.closePopup} log={this.state.logsList[this.state.currentLog]}/>}
+        {this.state.popupShown && <Popup onClosePopup={this.closePopup} content={this.state.logsList[this.state.currentLog].fields}/>}
         <Filter />
         <Logger onLog={this.pushLogsList}>
           {
