@@ -1,33 +1,7 @@
 import React, { PropTypes } from 'react';
 import style from './LoggerList.css';
 import Log from '../Log';
-
-var crc32 = (function()
-{
-  var table = new Uint32Array(256);
-  for(var i = 256; i--;)
-  {
-    var tmp = i;
-    for(var k = 8; k--;)
-    {
-      tmp = tmp & 1 ? 3988292384 ^ tmp >>> 1 : tmp >>> 1;
-    }
-
-    table[i] = tmp;
-  }
-  return function( data )
-  {
-    var crc = -1;
-
-    for(var i = 0, l = data.length; i < l; i++)
-    {
-      crc = crc >>> 8 ^ table[ crc & 255 ^ data[i] ];
-    }
-
-    return (crc ^ -1) >>> 0;
-  };
-
-})();
+import crc32 from '../../utils/crc32'
 
 const LoggerList = (props) => {
 
@@ -37,7 +11,7 @@ const LoggerList = (props) => {
           props.logs.map((item, i) => {
             let fields = item.fields;
             let color = props.colorArray[crc32(fields.host[0]) % props.colorArray.length];
-            return <Log key={i} log={fields} color={color} onLogClick={() => {props.onLogClick(i)}} onShowTooltip={(ev, data) => props.onShowTooltip(ev, data, i)} onCloseTooltip={props.onCloseTooltip}/>
+            return <Log key={i} log={fields} color={color} onLogClick={() => {props.onLogClick(i)}}/>
           })
         }
       </div>
