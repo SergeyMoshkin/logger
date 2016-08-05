@@ -15,7 +15,6 @@ export default class HomePage extends React.Component {
   state = {
     logsList: [],
     popupShown: false,
-    tooltipShown: [false, 0, 0],
     currentLog: 0
   };
 
@@ -53,29 +52,17 @@ export default class HomePage extends React.Component {
     });
   };
 
-  showTooltip = (ev, data) => {
-    this.setState({
-      tooltipShown: [true, ev.clientY + window.scrollY + 15, ev.clientX + window.scrollX + 10]
-    })
-  };
-
-  closeTooltip = () => {
-    this.setState({
-      tooltipShown: [false, 0, 0]
-    })
-  };
 
   render() {
     return (
       <div>
         {this.state.popupShown && <Popup onClosePopup={this.closePopup} content={this.state.logsList[this.state.currentLog].fields}/>}
-        {this.state.tooltipShown[0] && <Tooltip content={this.state.logsList[this.state.currentLog].fields} top={this.state.tooltipShown[1]} left={this.state.tooltipShown[2]}/>}
         <Filter />
         <Logger onLog={this.pushLogsList}>
           {
             this.state.logsList.length > 0
             &&
-            <LoggerList logs={this.state.logsList} onLogClick={(data) => {this.setCurrentLog(data); this.showPopup()}} onShowTooltip={(ev, data, i) => {this.setCurrentLog(i); this.showTooltip(ev, data)}} onCloseTooltip={this.closeTooltip}>
+            <LoggerList logs={this.state.logsList} onLogClick={(data) => {this.setCurrentLog(data); this.showPopup()}}>
             </LoggerList>
           }
         </Logger>
