@@ -7,10 +7,12 @@ const Popup = (props) => {
     <div className={style.popup}>
       <div className={style.popupContent}>
         <div className={ style.popupCross } onClick={props.onClosePopup}>&#x2573;</div>
-        { props.fields.map((item) => <div key={ item } className={style.field} >
-          <h2 className={style.fieldTitle}>{item}</h2>
-          { props.content[item] }
-        </div>) }
+        {
+          props.fields.map((item) => <div key={ item } className={style.field} >
+            <h2 className={style.fieldTitle}>{item}</h2>
+            { props.content[item] }
+          </div>)
+        }
       </div>
     </div>
   )

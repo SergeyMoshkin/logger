@@ -33,7 +33,7 @@
   text-align: left;
   vertical-align: middle;
   white-space: pre-wrap;
-  background: #fff;
+  background: #dadada;
   padding: 30px 20px;
   animation: popupAppear 0.5s cubic-bezier(0, 1.23, 0.22, 0.98);
 }
