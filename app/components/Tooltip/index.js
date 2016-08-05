@@ -4,7 +4,7 @@ import style from './Tooltip.css';
 const Tooltip = (props) => {
 
   return (
-    <div className={style.main} style={{top: props.top}}>
+    <div className={style.main} style={{top: props.top, left: props.left}}>
       {
         props.fields.map((item) => <div key={ item } className={style.field} >
           <h5 className={style.fieldTitle}>{item}</h5>

@@ -7,7 +7,7 @@
   cursor: pointer;
 }
 .log:hover {
-  border: 1px solid #f00;
+  /*border: 1px solid #f00;*/
 }
 .logItem {
   margin: 5px;
