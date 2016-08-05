@@ -8,21 +8,22 @@ export default class Logger extends React.Component{
     children: PropTypes.node
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     let url = "/logs-2016-07-29/_search";
-    let request = {"from":0,"size":1000,"sort":{"_score":{"order":"asc"}},"fields":["severity", "@timestamp", "host", "message", "stacktrace","logger","description"],"explain":true};
-    $.ajax({
+    let request = {"from":0,"size":500,"sort":{"_score":{"order":"asc"}},"explain":true};
+    request.fields = ["severity", "@timestamp", "host", "message", "stacktrace","logger","description"];
+    try {
+      let data = await $.ajax({
         type: "POST",
         url: url,
         dataType: 'json',
         data: JSON.stringify(request)
-      })
-      .fail(
-        (res) => console.log(res)
-      )
-      .done(
-        (res) => this.props.onLog(res)
-      );
+      });
+      this.props.onLog(data);
+    }
+    catch(e) {
+      console.error(`Error ${e.status}: ${e.responseText}`);
+    }
   }
 
   render(){
