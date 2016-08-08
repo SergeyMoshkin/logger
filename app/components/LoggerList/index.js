@@ -24,7 +24,10 @@ LoggerList.defaultProps = {
 
 LoggerList.propTypes = {
   logs: PropTypes.array,
-  colorArray: PropTypes.array
+  colorArray: PropTypes.array,
+  onLogEnter: PropTypes.func,
+  onLogLeave: PropTypes.func,
+  onLogClick: PropTypes.func
 };
 
 export default LoggerList

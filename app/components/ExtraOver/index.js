@@ -7,6 +7,10 @@ const body = document.querySelector('body');
 
 export default class ExtraOver extends React.Component {
 
+  static propTypes = {
+    content: PropTypes.array
+  };
+
   state = {
     popupShown: false,
     currentLog: 0,
