@@ -2,30 +2,34 @@ import React, { PropTypes } from 'react';
 import style from './Log.css';
 import Tooltip from '../Tooltip';
 
-export default class Log extends React.Component {
-
-  render() {
+const Log = (props) => {
+  
     return (
-      <div className={style.log} onClick={this.props.onLogClick} onMouseEnter={(ev) => this.props.onLogEnter(ev)}
-           onMouseLeave={this.props.onLogLeave}>
+      <div className={style.log} onClick={props.onLogClick}>
         {
-          this.props.fields.map((item, i) => {
-            return (
-              <span key={item + i} className={style.logItem}
-                    style={(i === 0) ? {color: this.props.color} : {color: this.props.colors[this.props.log.severity[0]]}}>
-                { (i === 1 && this.props.log['stacktrace']) ? <span style={{fontSize: '14px'}}>&#x26A1; </span> : null }
-                {
-                  (item === 'message') ?
-                    (this.props.log[item][0] || 'no message') :
-                    this.props.log[item]
-                }
+          props.fields.map((item, i) => {
+            if(i === 0){
+              return (
+                <span key={item + i} className={style.logHost} style={{color: props.color}} onMouseEnter={(ev) => props.onLogEnter(ev)}
+                      onMouseLeave={props.onLogLeave}>
+                  { props.log[item] }
+                </span>
+              )
+            }
+            else {
+              return (
+                <span key={item + i} className={style.logItem}
+                      style={(i === 0) ? {color: props.color} : {color: props.colors[props.log.severity[0]]}}>
+                { (i === 1 && props.log['stacktrace']) ? <span style={{fontSize: '14px'}}>&#x26A1; </span> : null }
+                    {props.log[item][0] || props.log["stacktrace"]}
               </span>
-            )
+              )
+            }
+
           })
         }
       </div>
     )
-  }
 };
 
 Log.propTypes = {
@@ -33,6 +37,8 @@ Log.propTypes = {
   fields: PropTypes.array.isRequired,
   color: PropTypes.string,
   onLogClick: PropTypes.func.isRequired,
+  onLogEnter: PropTypes.func.isRequired,
+  onLogLeave: PropTypes.func.isRequired,
 };
 
 Log.defaultProps = {
@@ -44,3 +50,5 @@ Log.defaultProps = {
     TRACE: '#b5b5b5'
   }
 };
+
+export default Log

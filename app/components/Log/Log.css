@@ -9,6 +9,19 @@
 .log:hover {
   /*border: 1px solid #f00;*/
 }
-.logItem {
-  margin: 5px;
+.logItem, .logHost {
+  margin: 0 5px;
+  vertical-align: top;
+}
+.logHost {
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+@media(max-width: 375px){
+  .logHost {
+    display: none;
+  }
 }

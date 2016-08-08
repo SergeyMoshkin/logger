@@ -10,7 +10,7 @@ export default class Logger extends React.Component{
 
   async componentDidMount() {
     let url = "/logs-2016-07-29/_search";
-    let request = {"from":0,"size":500,"sort":{"_score":{"order":"asc"}},"explain":true};
+    let request = {"from":0,"size":1000,"sort":{"_score":{"order":"asc"}},"explain":true};
     request.fields = ["severity", "@timestamp", "host", "message", "stacktrace","logger","description"];
     try {
       let data = await $.ajax({
