@@ -3,9 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import LoggerList from '../../components/LoggerList';
 import Logger from '../../components/Logger';
-import Popup from '../../components/Popup';
+import ExtraOver from '../../components/ExtraOver';
 import Filter from '../../components/Filter';
-import Tooltip from '../../components/Tooltip';
 import style from './styles.css';
 
 const body = document.querySelector('body');
@@ -13,56 +12,39 @@ const body = document.querySelector('body');
 export default class HomePage extends React.Component {
 
   state = {
-    logsList: [],
-    popupShown: false,
-    currentLog: 0
+    logsList: []
   };
 
   pushLogsList = (data) => {
-
     this.setState({
       logsList: this.state.logsList.concat(data.hits.hits)
     });
   };
 
-  setBodyOverflow = (value) => {
-    body.style.overflow = value;
+  logClick(number) {
+    this.refs.extraOver.setCurrentLog(number);
+    this.refs.extraOver.showPopup();
   };
 
-  showPopup() {
-    this.setState((state) => {
-      state.popupShown = true;
-    }, () => {
-      this.setBodyOverflow("hidden");
-    }
-    )
+  logEnter(ev, number) {
+    this.refs.extraOver.setCurrentLog(number);
+    this.refs.extraOver.showTooltip(ev);
   };
 
-  setCurrentLog(number) {
-    this.setState({
-      currentLog: number
-    });
-  }
-
-  closePopup = () => {
-    this.setState((state) => {
-      state.popupShown = false;
-    }, () => {
-      this.setBodyOverflow("auto");
-    });
+  logLeave = () => {
+    this.refs.extraOver.closeTooltip();
   };
-
 
   render() {
     return (
       <div>
-        {this.state.popupShown && <Popup onClosePopup={this.closePopup} content={this.state.logsList[this.state.currentLog].fields}/>}
+        <ExtraOver ref="extraOver" content={this.state.logsList}/>
         <Filter />
         <Logger onLog={this.pushLogsList}>
           {
             this.state.logsList.length > 0
             &&
-            <LoggerList logs={this.state.logsList} onLogClick={(data) => {this.setCurrentLog(data); this.showPopup()}}>
+            <LoggerList logs={this.state.logsList} onLogClick={(data) => {this.logClick(data)}} onLogEnter={(ev, data) => this.logEnter(ev, data)} onLogLeave={this.logLeave}>
             </LoggerList>
           }
         </Logger>

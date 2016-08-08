@@ -11,7 +11,7 @@ const LoggerList = (props) => {
           props.logs.map((item, i) => {
             let fields = item.fields;
             let color = props.colorArray[crc32(fields.host[0]) % props.colorArray.length];
-            return <Log key={i} log={fields} color={color} onLogClick={() => {props.onLogClick(i)}}/>
+            return <Log key={i} log={fields} color={color} onLogClick={() => {props.onLogClick(i)}} onLogEnter={(ev) => props.onLogEnter(ev, i)} onLogLeave={props.onLogLeave}/>
           })
         }
       </div>
