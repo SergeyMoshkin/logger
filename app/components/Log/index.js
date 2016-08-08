@@ -58,6 +58,7 @@ Log.defaultProps = {
   colors: {
     INFO: '#fff',
     WARN: '#f0ad4e',
-    ERROR: '#c9302c'
+    ERROR: '#c9302c',
+    TRACE: '#b5b5b5'
   }
 };

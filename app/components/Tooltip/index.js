@@ -18,7 +18,7 @@ const Tooltip = (props) => {
 
 Tooltip.propTypes = {
   content: PropTypes.object.isRequired,
-  top: PropTypes.number.isRequired,
+  coords: PropTypes.array.isRequired,
 };
 
 Tooltip.defaultProps = {

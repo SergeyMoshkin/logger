@@ -25,7 +25,7 @@ Popup.propTypes = {
 };
 
 Popup.defaultProps = {
-  fields: ['host', 'message', '@timestamp', 'stacktrace', 'logger', 'description', 'severity']
+  fields: ['host', 'message', '@timestamp', 'stacktrace', 'logger', 'description']
 };
 
 export default Popup
